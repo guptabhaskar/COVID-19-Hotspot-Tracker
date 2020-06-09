@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/index.css">	
+    <title>COVID-19 Hotspot Tracker</title>
+    <link rel = "icon" href ="logo.jpg" type = "image/x-icon"> 
+	<script data-ad-client="ca-pub-8765843920710567" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head> 
+<body> 
+    <div class="jumbotron jumbotron-fluid">
+			<div class="container">
+			<h1 class="display-4"><i class="stethoscope icon"></i>COVID-19 Hotspot Tracker</h1>
+			<h4 class="lead">Get to know if you are near a containment zone or not.</h4>
+			</div>
+	</div>
+	<div class="container">
+		<div class="row m-t-15 m-b-35">
+                <div class="col-md-12 text-center">
+                      <div class="address_form_container">
+                        <label class="form-label" for="address">FIND NEAREST CONTAINMENT ZONE</label>
+                        <input id="address" type="text" placeholder="Address">
+                      </div>
+                      <input id="submit" type="submit" value="Submit">
+                </div>
+        </div>
+		<hr class="style2">
+			<p>OR</p>
+		<hr class="style2">
+		<button class="btn btn-outline-info" id="current">Use current location</button>
+	</div>
+
+	<div id="modal1" class="modal">
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <span id="close1" class="close">&times;</span>
+	    <h3 id="modal1Content">You are near a containment zone.</h3>
+	    <ul id="ContainmentZones">
+	    	<h3>Containment Zones in Radius of 5Km:</h3>
+	    </ul>
+	    <div class="container">
+	    	<img class="tips" src="tips.png">
+		</div>
+	  </div>
+	</div>
+	<div id="modal2" class="modal">
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <span id="close2" class="close">&times;</span>
+	    <p>You are not near to a containment zone.</p>
+	    <div class="container">
+	    	<img class="tips" src="tips.png">
+		</div>
+	  </div>
+	</div>
+
+
+	<h2 id="demo"></h2>
+
+	<!-- </div> -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3kAwioi5Adu1oBvr-tYIxKub_DkJ4Lx8&signed_in=true&callback=init"async defer></script> 
+</body>
+</html>
