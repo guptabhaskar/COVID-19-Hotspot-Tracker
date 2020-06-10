@@ -12,6 +12,21 @@
     <title>COVID-19 Hotspot Tracker</title>
     <link rel = "icon" href ="favicon_io/favicon.ico" type = "image/x-icon"> 
 	<!-- <script data-ad-client="ca-pub-8765843920710567" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+	<style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 50%;
+        width: 50%;
+        margin: auto;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
 </head> 
 <body> 
     <div class="jumbotron jumbotron-fluid">
@@ -35,16 +50,20 @@
 		<hr class="style2">
 		<button class="btn btn-outline-info" id="current">Use current location</button>
 	</div>
+	<br>
+	<br>
+	<div id="map"></div>
 
 	<div id="modal1" class="modal">
 	  <!-- Modal content -->
 	  <div class="modal-content">
 	    <span id="close1" class="close">&times;</span>
-	    <h3 id="modal1Content">You are near a containment zone.</h3>
+	    <h3 id="modal1Content" style="color: red">You are near a containment zone.</h3>
 	    <ul id="ContainmentZones">
 	    	<h3>Containment Zones in Radius of 5Km:</h3>
 	    </ul>
 	    <div class="container">
+	    	<!-- <div id="map"></div> -->
 	    	<img class="tips" src="tips.png">
 		</div>
 	  </div>
@@ -53,15 +72,12 @@
 	  <!-- Modal content -->
 	  <div class="modal-content">
 	    <span id="close2" class="close">&times;</span>
-	    <p>You are not near to a containment zone.</p>
+	    <h3 style="color: green">You are not near to a containment zone.</h3>
 	    <div class="container">
 	    	<img class="tips" src="tips.png">
 		</div>
 	  </div>
 	</div>
-
-
-	<h2 id="demo"></h2>
 
 	<!-- </div> -->
     <!-- Optional JavaScript -->
