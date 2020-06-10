@@ -18,8 +18,8 @@ var button=document.getElementById("submit");
 var map, infoWindow;
 
 var geocoder;
-var markers=[];
 var circles=[];
+var markers=[];
 function init() 
 {
 	// console.log("Init");
@@ -51,15 +51,10 @@ function init()
 	    	{
 	      		latitude=results[0].geometry.location.lat();
 	      		longitude=results[0].geometry.location.lng();
-	      	    var pos1 = {
+	      	    var pos = {
 	          				lat: latitude,
 	          				lng: longitude
 	        				};
-	        	var marker = new google.maps.Marker({
-							position: pos1,
-							map: map,
-							title:'C'
-							}); 
 	        	var cityCircle = new google.maps.Circle({
             					strokeColor: '#FF0000',
 						        strokeOpacity: 0.8,
@@ -67,11 +62,10 @@ function init()
 						        fillColor: '#FF0000',
 						        fillOpacity: 0.35,
 						        map: map,
-						        center: pos1,
+						        center: pos,
 						        radius: 1000
           						});
 	        	circles.push(cityCircle);
-				markers.push(marker); 	
 	    	}
 		} 
 		else 
@@ -112,11 +106,14 @@ function findContainment(position) {
               lng: position.coords.longitude
             	};
     DeleteMarkers();
-    infoWindow.setPosition(pos);
-    infoWindow.setContent('Your Address');
-    infoWindow.open(map);
     map.setCenter(pos);
     map.setZoom(13);
+	var marker = new google.maps.Marker({
+			position: pos,
+			map: map,
+			title:'Your Address'
+			});
+	markers.push(marker); 
 	// Making a POST request using an axios instance from a connected library
 	axios.post(apiurl,object)
 	  // Handle a successful response from the server
@@ -151,12 +148,14 @@ function findContainment1(latitude,longitude) {
           lng: longitude
         	};
     DeleteMarkers();
-	infoWindow.setPosition(pos);
-	infoWindow.setContent("Your Address");
-	infoWindow.open(map);
     map.setCenter(pos);
     map.setZoom(13);
-
+	var marker = new google.maps.Marker({
+			position: pos,
+			map: map,
+			title:'Your Address'
+			});
+	markers.push(marker); 
 	axios.post(apiurl,object)
 	  .then(response => {
 			  const data = response.data;
@@ -180,7 +179,6 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 function nearContainmentZone(data){
-	var i=1;
 	data.containmentZoneNames.forEach(function(zoneName){
 		ContainmentZones.innerHTML+="<li>"+zoneName+"</li>";
 		geocodead(zoneName);
