@@ -19,6 +19,7 @@ var map, infoWindow;
 
 var geocoder;
 var markers=[];
+var circles=[];
 function init() 
 {
 	// console.log("Init");
@@ -59,6 +60,17 @@ function init()
 							map: map,
 							title:'C'
 							}); 
+	        	var cityCircle = new google.maps.Circle({
+            					strokeColor: '#FF0000',
+						        strokeOpacity: 0.8,
+						        strokeWeight: 2,
+						        fillColor: '#FF0000',
+						        fillOpacity: 0.35,
+						        map: map,
+						        center: pos1,
+						        radius: 1000
+          						});
+	        	circles.push(cityCircle);
 				markers.push(marker); 	
 	    	}
 		} 
@@ -101,7 +113,7 @@ function findContainment(position) {
             	};
     DeleteMarkers();
     infoWindow.setPosition(pos);
-    infoWindow.setContent('Location used');
+    infoWindow.setContent('Your Address');
     infoWindow.open(map);
     map.setCenter(pos);
     map.setZoom(13);
@@ -140,7 +152,7 @@ function findContainment1(latitude,longitude) {
         	};
     DeleteMarkers();
 	infoWindow.setPosition(pos);
-	infoWindow.setContent('Location used');
+	infoWindow.setContent("Your Address");
 	infoWindow.open(map);
     map.setCenter(pos);
     map.setZoom(13);
@@ -221,6 +233,10 @@ function DeleteMarkers() {
         markers[i].setMap(null);
     }
     markers = [];
+    for (var i = 0; i < circles.length; i++) {
+        circles[i].setMap(null);
+    }
+    circles = [];
 };
 window.onclick = function(event) {
   if (event.target == modal1 || event.target == modal2) {
