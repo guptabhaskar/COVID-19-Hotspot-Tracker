@@ -1,0 +1,19 @@
+<%- include("partials/header") %>
+
+<h1 style="text-align: center; margin-top: 50px; margin-bottom: 50px;">Login!</h1>
+<div class="d-flex justify-content-center align-items-center container">
+    <div class="row ">
+        <form action="/login" method="POST" style="text-align: center;">
+            <div class="form-group" style="margin-bottom: 30px;">
+                <input type="text" class="form-control" name="username" placeholder="Username" style="width: 30%; margin: 0 auto;">
+            </div>
+            <div class="form-group" style="margin-bottom: 30px;">
+                <input type="password" class="form-control" name="password" placeholder="Password" style="width: 30%; margin: 0 auto;">
+            </div>
+            <button type="submit" class="btn btn-primary">Login!</button>
+        </form>
+    </div>
+</div>
+
+<%- include("partials/footer") %>
+

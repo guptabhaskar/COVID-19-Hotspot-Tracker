@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/index.css">	
+	<link rel="stylesheet" type="text/css" href="assets/styles.css">	
+	<link rel="stylesheet" type="text/css" href="assets/body.css">	
+	<link rel="stylesheet" type="text/css" href="assets/heading.css">	
+    <title>COVID-19 Hotspot Tracker</title>
+    <link rel = "icon" href="favicon_io/favicon.ico" type = "image/x-icon"> 
+	<style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 80%;
+        width: 80%;
+        margin: auto;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+</head> 
+<body> 
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4"><i class="stethoscope icon"></i>COVID-19 Hotspot Tracker</h1>
+			<h4 class="lead">Get to know if you are near a containment zone or not.</h4>
+			<h4><a href="/hotspots/new">Add a Hotspot</a></h4>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row m-t-15 m-b-35">
+                <div class="col-md-12 text-center">
+                      <div class="address_form_container">
+                        <label class="form-label" for="address">FIND NEAREST CONTAINMENT ZONE</label>
+                        <input id="address" type="text" placeholder="Address">
+                      </div>
+                      <input id="submit" type="submit" value="Submit">
+                </div>
+        </div>
+		<hr class="style2">
+			<p>OR</p>
+		<hr class="style2">
+		<button class="btn btn-outline-info" id="current">Use current location</button>
+	</div>
+	<br>
+	<br>
+	<br>
+	<div id="map"></div>
+	<br>
+
+	<div class="modal fade" id="modal1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="modal1" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h3 class="modal-title" style="color: red;text-align: center;">You are near a containment zone.</h3>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+				<ul id="ContainmentZones">
+				</ul>
+				<div class="container">
+					<img class="tips img-fluid" src="tips.png">
+				</div>
+			</div>
+
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		  </div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="modal2" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="modal2" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h3 class="modal-title" style="color: green;text-align: center;">You are safe.</h3>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+				<p>You are not near a containment zone. But please follow the guidelines below and save yourself from Coronavirus.</p>
+				<div class="container">
+					<img class="tips img-fluid" src="tips.png">
+				</div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		  </div>
+		</div>
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="landing.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCME0F43akX6LzOWKeNzEWJgjA2solNEM0&callback=init"async defer></script> 
+	<!--<script src="https://maps.googleapis.com/maps/api/js?key="+"<%= process.env.key %>"+"&callback=init"async defer></script> -->
+<%- include("partials/fancy") %>

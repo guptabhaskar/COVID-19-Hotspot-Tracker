@@ -1,0 +1,35 @@
+<%- include("../partials/header") %>
+
+ <div class="container">
+     <header class="jumbotron">
+         <div class="container">
+             <h1>Welcome To COVID-19 App!</h1>
+             <p>
+                <a class="btn btn-primary btn-large" href="/hotspots/new">Add New Hotspot</a>
+             </p>
+         </div>
+     </header>
+     
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% hotspots.forEach(function(hotspot){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                   <div class="caption">
+                       <h4><%= hotspot.name %></h4>
+                       <h4><%= hotspot.range %></h4>
+                       <h4><%= hotspot.verified %></h4>
+                       <h4><%= hotspot.source %></h4>
+                       <h4><%= hotspot.latitude %></h4>
+                       <h4><%= hotspot.longitude %></h4>
+                       <a class="btn btn-xs btn-warning" href="/hotspots/<%= hotspot._id %>/edit">Edit</a>
+                       <form id="delete-form" action="/hotspots/<%= hotspot._id %>?_method=DELETE" method="POST">
+                           <button class="btn btn-xs btn-danger">Delete</button>
+                       </form>
+                   </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>
