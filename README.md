@@ -1,5 +1,5 @@
 # COVID-19-Hotspot-Tracker
-A web application that tells you about containment zones within 5km of your current location or the address entered. A new user can add his own hotspot/containment zone which will be used once approved by admin after logging in. The containment zones are not up to date.
+A web application that tells you about containment zones within 5km of your current location or the address entered. A new user can add a new hotspot/containment zone which will be used once approved by admin after logging in. The containment zones are not up to date.
 <br/>
 <br/>
 <div align='center'>
