@@ -9,7 +9,7 @@
   "author": "Bhaskar",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.0",
     "connect-flash": "^0.1.1",
